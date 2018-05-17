@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="<?= App::getRouter()->getLanguage() ?>">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="http://bootstrap-3.ru/assets/ico/favicon.ico">
+
+    <title><?= Config::get('site_name') ?></title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom styles for this template -->
+    <link href="/css/jumbotron-narrow.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<?php Session::init(); ?>
+<!-- container -->
+<div class="container">
+    <div class="header">
+        <ul class="nav nav-pills pull-right">
+            <li <?= App::getRouter()->getController() == 'index' ? 'class="active"' : '' ?> ><a href="/">Home</a></li>
+            <li <?= App::getRouter()->getController() == 'pages' ? 'class="active"' : '' ?> ><a href="/pages/">Pages</a></li>
+            <li <?= App::getRouter()->getController() == 'about' ? 'class="active"' : '' ?> ><a href="/about/">About</a></li>
+            <li <?= App::getRouter()->getController() == 'contact' ? 'class="active"' : '' ?> ><a href="/contact/">Contact</a></li>
+            <?php if(Session::get('loggedIn') == true):?>
+            <li <?= App::getRouter()->getController() == 'login' ? 'class="active"' : '' ?> ><a href="/login/logout/">Logout</a></li>
+            <?php else: ?>
+            <li <?= App::getRouter()->getController() == 'login' ? 'class="active"' : '' ?> ><a href="/login/">Login</a></li>
+            <?php endif; ?>
+        </ul>
+        <h3 class="text-muted">Project name</h3>
+    </div>
+
+    <?php if (Session::hasFlash()) {?>
+    <div class="alert alert-danger" role="alert">
+        <?= Session::flash() ?>
+    </div> <?php } ?>
+
+    <?= $data['content'] ?>
+
+    <div class="footer">
+        <p>&copy; Company 2014</p>
+        <p><?= __('lng.test', 'default value') ?></p>
+        <p><?= __('lng.test2', 'default value') ?></p>
+    </div>
+
+</div> <!-- /container -->
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+<?php if (App::getRouter()->getController() == 'contact-test') { ?>
+
+<script>
+
+    $("#contactForm").submit(function(event){
+        event.preventDefault();
+        submitForm();
+    });
+
+    function submitForm(){
+        // Переменные с данными из формы
+        var name = $("#name").val();
+        var email = $("#email").val();
+        var message = $("#message").val();
+
+        $.ajax({
+            type: "POST",
+            url: "php/form-process.php",
+            data: "name="+ name + "&email="+ email + "&message="+ message,
+            success : function(text){
+                if(text == "success"){
+                    formSuccess();
+                }
+            }
+        });
+    }
+    function  formSuccess(){
+        $( "#msgSubmit").removeClass( "hidden");
+    }
+
+</script>
+
+<?php } ?>
+</body>
+</html>

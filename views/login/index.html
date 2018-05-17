@@ -1,0 +1,30 @@
+<h2>Login IN</h2>
+
+<form method="post" action="">
+
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" value="" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" value="" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="code" class="h4">Captcha</label>
+        <div class="input-group">
+            <img src="/captcha/" alt="Вывод капчи" />
+            <input type="code" class="form-control" name="code" id="code" placeholder="Enter captcha" required>
+        </div>
+    </div>
+
+
+    <input type="submit" class="btn btn-success" />
+
+</form>
+
+<?php
+if ($data['role'] == 'admin') echo 'is admin';
+?>

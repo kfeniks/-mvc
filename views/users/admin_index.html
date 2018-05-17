@@ -1,0 +1,34 @@
+<h2>Users</h2>
+
+<table class="table table-striped">
+
+    <tr>
+        <th>Email</th>
+        <th>Имя</th>
+        <th>Права</th>
+        <th>Создан</th>
+        <th>Действия</th>
+    </tr>
+
+    <?php foreach($data['users'] as $user_data) { ?>
+
+    <tr>
+
+        <td><b><?= $user_data['email'] ?></b></td>
+        <td><b><?= $user_data['fname'] ?></b></td>
+        <td><b><?= $user_data['role'] ?></b></td>
+        <td><b><?= date("d M Y", $user_data['created_at']) ?></b></td>
+        <td align="right">
+            <a href="/admin/users/edit/<?= $user_data['id'] ?>"><button class="btn btn-sm btn-primary">edit</button></a>
+            <a href="/admin/users/delete/<?= $user_data['id'] ?>" onclick="return confirmDelete();"><button class="btn btn-sm btn-warning">delete</button></a>
+        </td>
+    </tr>
+    <?php } ?>
+
+</table>
+
+<br/>
+
+<div>
+    <a href="/admin/users/add/"><button class="btn btn-sm btn-success">New User</button></a>
+</div>

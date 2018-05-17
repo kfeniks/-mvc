@@ -1,0 +1,34 @@
+<h2>Edit user <?= $data['user']['fname'] ?></h2>
+
+<form method="post" action="">
+
+    <input type="hidden" name="id" value="<?= $data['user']['id'] ?>"/>
+    <input type="hidden" name="password" value="<?= $data['user']['password'] ?>"/>
+
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" pattern="[^ @]*@[^ @]*" value="<?= $data['user']['email'] ?>" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for=fname">Name</label>
+        <input type="text" id="fname" name="fname" value="<?= $data['user']['fname'] ?>" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="karma">Karma</label>
+        <input type="text" id="karma" name="karma" value="<?= $data['user']['karma'] ?>" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="is_active">Is Active?</label>
+        <input type="checkbox" id="is_active" name="is_active" value="<?= $data['user']['is_active'] ?>" class="form-control" <?= $data['user']['is_active'] ? 'checked="checked"' : '' ?>  />
+    </div>
+
+    <div class="form-group">
+        <label for="status">Status?</label>
+        <input type="checkbox" id="status" name="status" value="<?= $data['user']['status'] ?>" class="form-control" <?= $data['user']['status'] ? 'checked="checked"' : '' ?>  />
+    </div>
+
+    <input type="submit" class="btn btn-success" />
+
+</form>

@@ -1,0 +1,26 @@
+<table class="table">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Имя</th>
+        <th>Почта</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <?php foreach($data['messages'] as $message_data) { ?>
+
+    <tr>
+        <td><?= $message_data['messages_id'] ?></td>
+        <td><?= $message_data['messages_name'] ?></td>
+        <td><?= $message_data['messages_email'] ?></td>
+        <td align="right">
+            <a href="/admin/contact/view/<?= $message_data['messages_id'] ?>"><button class="btn btn-sm btn-primary">view</button></a>
+            <a href="/admin/contact/delete/<?= $message_data['messages_id'] ?>" onclick="return confirmDelete();"><button class="btn btn-sm btn-warning">delete</button></a>
+        </td>
+    </tr>
+
+    <?php } ?>
+
+    </tbody>
+</table>
